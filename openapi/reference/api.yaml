@@ -1,0 +1,335 @@
+openapi: 3.0.1
+info:
+  title: Paidy Payment API
+  version: 1.0.0
+  description: API for creating payments through Paidy.
+servers:
+  - url: https://api.paidy.com
+    description: Production server
+paths:
+  /payments:
+    post:
+      summary: Create a payment
+      operationId: createPayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token_id:
+                  type: string
+                  example: "tok_WL0GoQwAAAoA1beX"
+                amount:
+                  type: integer
+                  example: 12500
+                currency:
+                  type: string
+                  example: "JPY"
+                description:
+                  type: string
+                  example: " "
+                store_name:
+                  type: string
+                  example: "Paidy sample store"
+                buyer_data:
+                  type: object
+                  properties:
+                    age:
+                      type: integer
+                      example: 29
+                    order_count:
+                      type: integer
+                      example: 1000
+                    ltv:
+                      type: integer
+                      example: 250000
+                    last_order_amount:
+                      type: integer
+                      example: 20000
+                    last_order_at:
+                      type: integer
+                      example: 20
+                order:
+                  type: object
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          quantity:
+                            type: integer
+                            example: 1
+                          id:
+                            type: string
+                            example: "PDI001"
+                          title:
+                            type: string
+                            example: "Paidyスニーカー"
+                          description:
+                            type: string
+                            example: "Paidyスニーカー"
+                          unit_price:
+                            type: integer
+                            example: 12000
+                    tax:
+                      type: integer
+                      example: 300
+                    shipping:
+                      type: integer
+                      example: 200
+                    order_ref:
+                      type: string
+                      example: "your_order_ref"
+                metadata:
+                  type: object
+                shipping_address:
+                  type: object
+                  properties:
+                    line1:
+                      type: string
+                      example: "AXISビル 10F"
+                    line2:
+                      type: string
+                      example: "六本木4-22-1"
+                    state:
+                      type: string
+                      example: "港区"
+                    city:
+                      type: string
+                      example: "東京都"
+                    zip:
+                      type: string
+                      example: "106-2004"
+      responses:
+        '201':
+          description: Payment created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "pay_WD1KIj4AALQAIMtZ"
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2018-06-14T05:27:10.063Z"
+                  expires_at:
+                    type: string
+                    format: date-time
+                    example: "2018-07-14T05:27:10.063Z"
+                  amount:
+                    type: integer
+                    example: 12500
+                  currency:
+                    type: string
+                    example: "JPY"
+                  description:
+                    type: string
+                    example: " "
+                  store_name:
+                    type: string
+                    example: "Paidy sample store"
+                  test:
+                    type: boolean
+                    example: true
+                  status:
+                    type: string
+                    example: "closed"
+                  tier:
+                    type: string
+                    example: "classic"
+                  buyer:
+                    type: object
+                    properties:
+                      name1:
+                        type: string
+                        example: "山田　太郎"
+                      name2:
+                        type: string
+                        example: "ヤマダ　タロウ"
+                      email:
+                        type: string
+                        example: "yamada@paidy.com"
+                      phone:
+                        type: string
+                        example: "818000000001"
+                  order:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "PDI001"
+                            title:
+                              type: string
+                              example: "Paidyスニーカー"
+                            description:
+                              type: string
+                              example: "Paidyスニーカー"
+                            unit_price:
+                              type: integer
+                              example: 12000
+                            quantity:
+                              type: integer
+                              example: 1
+                      tax:
+                        type: integer
+                        example: 300
+                      shipping:
+                        type: integer
+                        example: 200
+                      order_ref:
+                        type: string
+                        example: "your_order_ref"
+                      updated_at:
+                        type: string
+                        nullable: true
+                        example: null
+                  shipping_address:
+                    type: object
+                    properties:
+                      line1:
+                        type: string
+                        example: "AXISビル10F"
+                      line2:
+                        type: string
+                        example: "六本木4-22-1"
+                      city:
+                        type: string
+                        example: "港区"
+                      state:
+                        type: string
+                        example: "東京都"
+                      zip:
+                        type: string
+                        example: "106-2004"
+                  captures:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "cap_WFIk5yIAACIAC6n3"
+                        created_at:
+                          type: string
+                          format: date-time
+                          example: "2018-06-15T05:06:47.189Z"
+                        amount:
+                          type: integer
+                          example: 39800
+                        tax:
+                          type: integer
+                          example: 300
+                        shipping:
+                          type: integer
+                          example: 500
+                        items:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: "PDI001"
+                              title:
+                                type: string
+                                example: "Paidyスニーカー"
+                              description:
+                                type: string
+                                example: " "
+                              unit_price:
+                                type: integer
+                                example: 10000
+                              quantity:
+                                type: integer
+                                example: 1
+                        metadata:
+                          type: object
+                          example: {"key1": "value1", "key2": "value2"}
+                  refunds:
+                    type: array
+                    items:
+                      type: object
+                  metadata:
+                    type: object
+  /payments/{payment_id}/captures:
+    post:
+      summary: Capture a payment
+      operationId: capturePayment
+      parameters:
+        - name: payment_id
+          in: path
+          required: true
+          description: ID of the payment to capture
+          schema:
+            type: string
+            example: "pay_WD1KIj4AALQAIMtZ"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  example: {"key1": "value1", "key2": "value2"}
+      responses:
+        '201':
+          description: Payment captured successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "pay_WD1KIj4AALQAIMtZ"
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2018-06-14T05:27:10.063Z"
+                  expires_at:
+                    type: string
+                    format: date-time
+                    example: "2018-07-14T05:27:10.063Z"
+                  amount:
+                    type: integer
+                    example: 39800
+                  currency:
+                    type: string
+                    example: "JPY"
+                  description:
+                    type: string
+                    example: " "
+                  store_name:
+                    type: string
+                    example: "Paidy sample store"
+                  test:
+                    type: boolean
+                    example: true
+                  status:
+                    type: string
+                    example: "closed"
+                  tier:
+                    type: string
+                    example: "classic"
+                  buyer:
+                    type: object
+                    properties:
+                      name1:
+                        type: string
+                        example: "山田　太郎"
+                      name2:
+                        type: string
+                        example: "ヤマダ　タロウ"

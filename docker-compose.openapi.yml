@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  openapigen:
+    image: openapitools/openapi-generator-cli:v7.9.0
+    volumes:
+      - .:/openapi
+    command: |
+      generate -i
+      openapi/openapi/reference/api.yaml
+      -g typescript-fetch
+      --additional-properties=modelPropertyNaming=camelCase,enumPropertyNaming=camelCase
+      -o openapi/src

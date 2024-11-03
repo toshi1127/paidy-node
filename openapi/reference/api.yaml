@@ -51,6 +51,12 @@ paths:
                     last_order_at:
                       type: integer
                       example: 20
+                  required:
+                    - age
+                    - order_count
+                    - ltv
+                    - last_order_amount
+                    - last_order_at
                 order:
                   type: object
                   properties:
@@ -74,6 +80,9 @@ paths:
                           unit_price:
                             type: integer
                             example: 12000
+                        required:
+                          - quantity
+                          - unit_price
                     tax:
                       type: integer
                       example: 300
@@ -83,6 +92,8 @@ paths:
                     order_ref:
                       type: string
                       example: "your_order_ref"
+                  required:
+                    - items
                 metadata:
                   type: object
                 shipping_address:
@@ -103,6 +114,15 @@ paths:
                     zip:
                       type: string
                       example: "106-2004"
+                  required:
+                    - zip
+              required:
+                - token_id
+                - amount
+                - currency
+                - buyer_data
+                - order
+                - shipping_address
       responses:
         '201':
           description: Payment created successfully

@@ -24,7 +24,7 @@ export interface CreatePaymentRequestOrderItemsInner {
      * @type {number}
      * @memberof CreatePaymentRequestOrderItemsInner
      */
-    quantity?: number;
+    quantity: number;
     /**
      * 
      * @type {string}
@@ -48,13 +48,15 @@ export interface CreatePaymentRequestOrderItemsInner {
      * @type {number}
      * @memberof CreatePaymentRequestOrderItemsInner
      */
-    unitPrice?: number;
+    unitPrice: number;
 }
 
 /**
  * Check if a given object implements the CreatePaymentRequestOrderItemsInner interface.
  */
 export function instanceOfCreatePaymentRequestOrderItemsInner(value: object): value is CreatePaymentRequestOrderItemsInner {
+    if (!('quantity' in value) || value['quantity'] === undefined) return false;
+    if (!('unitPrice' in value) || value['unitPrice'] === undefined) return false;
     return true;
 }
 
@@ -68,11 +70,11 @@ export function CreatePaymentRequestOrderItemsInnerFromJSONTyped(json: any, igno
     }
     return {
         
-        'quantity': json['quantity'] == null ? undefined : json['quantity'],
+        'quantity': json['quantity'],
         'id': json['id'] == null ? undefined : json['id'],
         'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'] == null ? undefined : json['description'],
-        'unitPrice': json['unit_price'] == null ? undefined : json['unit_price'],
+        'unitPrice': json['unit_price'],
     };
 }
 

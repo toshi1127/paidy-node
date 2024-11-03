@@ -24,37 +24,42 @@ export interface CreatePaymentRequestBuyerData {
      * @type {number}
      * @memberof CreatePaymentRequestBuyerData
      */
-    age?: number;
+    age: number;
     /**
      * 
      * @type {number}
      * @memberof CreatePaymentRequestBuyerData
      */
-    orderCount?: number;
+    orderCount: number;
     /**
      * 
      * @type {number}
      * @memberof CreatePaymentRequestBuyerData
      */
-    ltv?: number;
+    ltv: number;
     /**
      * 
      * @type {number}
      * @memberof CreatePaymentRequestBuyerData
      */
-    lastOrderAmount?: number;
+    lastOrderAmount: number;
     /**
      * 
      * @type {number}
      * @memberof CreatePaymentRequestBuyerData
      */
-    lastOrderAt?: number;
+    lastOrderAt: number;
 }
 
 /**
  * Check if a given object implements the CreatePaymentRequestBuyerData interface.
  */
 export function instanceOfCreatePaymentRequestBuyerData(value: object): value is CreatePaymentRequestBuyerData {
+    if (!('age' in value) || value['age'] === undefined) return false;
+    if (!('orderCount' in value) || value['orderCount'] === undefined) return false;
+    if (!('ltv' in value) || value['ltv'] === undefined) return false;
+    if (!('lastOrderAmount' in value) || value['lastOrderAmount'] === undefined) return false;
+    if (!('lastOrderAt' in value) || value['lastOrderAt'] === undefined) return false;
     return true;
 }
 
@@ -68,11 +73,11 @@ export function CreatePaymentRequestBuyerDataFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'age': json['age'] == null ? undefined : json['age'],
-        'orderCount': json['order_count'] == null ? undefined : json['order_count'],
-        'ltv': json['ltv'] == null ? undefined : json['ltv'],
-        'lastOrderAmount': json['last_order_amount'] == null ? undefined : json['last_order_amount'],
-        'lastOrderAt': json['last_order_at'] == null ? undefined : json['last_order_at'],
+        'age': json['age'],
+        'orderCount': json['order_count'],
+        'ltv': json['ltv'],
+        'lastOrderAmount': json['last_order_amount'],
+        'lastOrderAt': json['last_order_at'],
     };
 }
 

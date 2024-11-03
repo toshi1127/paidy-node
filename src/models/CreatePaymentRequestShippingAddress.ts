@@ -48,13 +48,14 @@ export interface CreatePaymentRequestShippingAddress {
      * @type {string}
      * @memberof CreatePaymentRequestShippingAddress
      */
-    zip?: string;
+    zip: string;
 }
 
 /**
  * Check if a given object implements the CreatePaymentRequestShippingAddress interface.
  */
 export function instanceOfCreatePaymentRequestShippingAddress(value: object): value is CreatePaymentRequestShippingAddress {
+    if (!('zip' in value) || value['zip'] === undefined) return false;
     return true;
 }
 
@@ -72,7 +73,7 @@ export function CreatePaymentRequestShippingAddressFromJSONTyped(json: any, igno
         'line2': json['line2'] == null ? undefined : json['line2'],
         'state': json['state'] == null ? undefined : json['state'],
         'city': json['city'] == null ? undefined : json['city'],
-        'zip': json['zip'] == null ? undefined : json['zip'],
+        'zip': json['zip'],
     };
 }
 

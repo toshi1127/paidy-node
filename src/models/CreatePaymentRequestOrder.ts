@@ -32,7 +32,7 @@ export interface CreatePaymentRequestOrder {
      * @type {Array<CreatePaymentRequestOrderItemsInner>}
      * @memberof CreatePaymentRequestOrder
      */
-    items?: Array<CreatePaymentRequestOrderItemsInner>;
+    items: Array<CreatePaymentRequestOrderItemsInner>;
     /**
      * 
      * @type {number}
@@ -57,6 +57,7 @@ export interface CreatePaymentRequestOrder {
  * Check if a given object implements the CreatePaymentRequestOrder interface.
  */
 export function instanceOfCreatePaymentRequestOrder(value: object): value is CreatePaymentRequestOrder {
+    if (!('items' in value) || value['items'] === undefined) return false;
     return true;
 }
 
@@ -70,7 +71,7 @@ export function CreatePaymentRequestOrderFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'items': json['items'] == null ? undefined : ((json['items'] as Array<any>).map(CreatePaymentRequestOrderItemsInnerFromJSON)),
+        'items': ((json['items'] as Array<any>).map(CreatePaymentRequestOrderItemsInnerFromJSON)),
         'tax': json['tax'] == null ? undefined : json['tax'],
         'shipping': json['shipping'] == null ? undefined : json['shipping'],
         'orderRef': json['order_ref'] == null ? undefined : json['order_ref'],
@@ -88,7 +89,7 @@ export function CreatePaymentRequestOrderFromJSONTyped(json: any, ignoreDiscrimi
 
     return {
         
-        'items': value['items'] == null ? undefined : ((value['items'] as Array<any>).map(CreatePaymentRequestOrderItemsInnerToJSON)),
+        'items': ((value['items'] as Array<any>).map(CreatePaymentRequestOrderItemsInnerToJSON)),
         'tax': value['tax'],
         'shipping': value['shipping'],
         'order_ref': value['orderRef'],

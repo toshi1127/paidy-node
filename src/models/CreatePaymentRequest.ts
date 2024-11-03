@@ -46,19 +46,19 @@ export interface CreatePaymentRequest {
      * @type {string}
      * @memberof CreatePaymentRequest
      */
-    tokenId?: string;
+    tokenId: string;
     /**
      * 
      * @type {number}
      * @memberof CreatePaymentRequest
      */
-    amount?: number;
+    amount: number;
     /**
      * 
      * @type {string}
      * @memberof CreatePaymentRequest
      */
-    currency?: string;
+    currency: string;
     /**
      * 
      * @type {string}
@@ -76,13 +76,13 @@ export interface CreatePaymentRequest {
      * @type {CreatePaymentRequestBuyerData}
      * @memberof CreatePaymentRequest
      */
-    buyerData?: CreatePaymentRequestBuyerData;
+    buyerData: CreatePaymentRequestBuyerData;
     /**
      * 
      * @type {CreatePaymentRequestOrder}
      * @memberof CreatePaymentRequest
      */
-    order?: CreatePaymentRequestOrder;
+    order: CreatePaymentRequestOrder;
     /**
      * 
      * @type {object}
@@ -94,13 +94,19 @@ export interface CreatePaymentRequest {
      * @type {CreatePaymentRequestShippingAddress}
      * @memberof CreatePaymentRequest
      */
-    shippingAddress?: CreatePaymentRequestShippingAddress;
+    shippingAddress: CreatePaymentRequestShippingAddress;
 }
 
 /**
  * Check if a given object implements the CreatePaymentRequest interface.
  */
 export function instanceOfCreatePaymentRequest(value: object): value is CreatePaymentRequest {
+    if (!('tokenId' in value) || value['tokenId'] === undefined) return false;
+    if (!('amount' in value) || value['amount'] === undefined) return false;
+    if (!('currency' in value) || value['currency'] === undefined) return false;
+    if (!('buyerData' in value) || value['buyerData'] === undefined) return false;
+    if (!('order' in value) || value['order'] === undefined) return false;
+    if (!('shippingAddress' in value) || value['shippingAddress'] === undefined) return false;
     return true;
 }
 
@@ -114,15 +120,15 @@ export function CreatePaymentRequestFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'tokenId': json['token_id'] == null ? undefined : json['token_id'],
-        'amount': json['amount'] == null ? undefined : json['amount'],
-        'currency': json['currency'] == null ? undefined : json['currency'],
+        'tokenId': json['token_id'],
+        'amount': json['amount'],
+        'currency': json['currency'],
         'description': json['description'] == null ? undefined : json['description'],
         'storeName': json['store_name'] == null ? undefined : json['store_name'],
-        'buyerData': json['buyer_data'] == null ? undefined : CreatePaymentRequestBuyerDataFromJSON(json['buyer_data']),
-        'order': json['order'] == null ? undefined : CreatePaymentRequestOrderFromJSON(json['order']),
+        'buyerData': CreatePaymentRequestBuyerDataFromJSON(json['buyer_data']),
+        'order': CreatePaymentRequestOrderFromJSON(json['order']),
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
-        'shippingAddress': json['shipping_address'] == null ? undefined : CreatePaymentRequestShippingAddressFromJSON(json['shipping_address']),
+        'shippingAddress': CreatePaymentRequestShippingAddressFromJSON(json['shipping_address']),
     };
 }
 

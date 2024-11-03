@@ -36,6 +36,9 @@ paths:
                 buyer_data:
                   type: object
                   properties:
+                    user_id:
+                      type: string
+                      example: "user_123"
                     age:
                       type: integer
                       example: 29
@@ -52,11 +55,7 @@ paths:
                       type: integer
                       example: 20
                   required:
-                    - age
-                    - order_count
-                    - ltv
-                    - last_order_amount
-                    - last_order_at
+                    - user_id
                 order:
                   type: object
                   properties:

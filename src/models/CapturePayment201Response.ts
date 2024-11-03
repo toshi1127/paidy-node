@@ -32,7 +32,7 @@ export interface CapturePayment201Response {
      * @type {string}
      * @memberof CapturePayment201Response
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {Date}
@@ -99,6 +99,7 @@ export interface CapturePayment201Response {
  * Check if a given object implements the CapturePayment201Response interface.
  */
 export function instanceOfCapturePayment201Response(value: object): value is CapturePayment201Response {
+    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -112,7 +113,7 @@ export function CapturePayment201ResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
+        'id': json['id'],
         'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
         'expiresAt': json['expires_at'] == null ? undefined : (new Date(json['expires_at'])),
         'amount': json['amount'] == null ? undefined : json['amount'],

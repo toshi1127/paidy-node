@@ -280,6 +280,8 @@ paths:
                       type: object
                   metadata:
                     type: object
+                required:
+                  - id
   /payments/{payment_id}/captures:
     post:
       summary: Capture a payment
@@ -351,3 +353,5 @@ paths:
                       name2:
                         type: string
                         example: "ヤマダ　タロウ"
+                required:
+                  - id

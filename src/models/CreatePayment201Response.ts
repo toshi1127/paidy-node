@@ -53,7 +53,7 @@ export interface CreatePayment201Response {
      * @type {string}
      * @memberof CreatePayment201Response
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {Date}
@@ -150,6 +150,7 @@ export interface CreatePayment201Response {
  * Check if a given object implements the CreatePayment201Response interface.
  */
 export function instanceOfCreatePayment201Response(value: object): value is CreatePayment201Response {
+    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -163,7 +164,7 @@ export function CreatePayment201ResponseFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
+        'id': json['id'],
         'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
         'expiresAt': json['expires_at'] == null ? undefined : (new Date(json['expires_at'])),
         'amount': json['amount'] == null ? undefined : json['amount'],

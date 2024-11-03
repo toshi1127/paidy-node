@@ -121,7 +121,6 @@ paths:
                 - currency
                 - buyer_data
                 - order
-                - shipping_address
       responses:
         '201':
           description: Payment created successfully

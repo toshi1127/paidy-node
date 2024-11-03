@@ -94,7 +94,7 @@ export interface CreatePaymentRequest {
      * @type {CreatePaymentRequestShippingAddress}
      * @memberof CreatePaymentRequest
      */
-    shippingAddress: CreatePaymentRequestShippingAddress;
+    shippingAddress?: CreatePaymentRequestShippingAddress;
 }
 
 /**
@@ -106,7 +106,6 @@ export function instanceOfCreatePaymentRequest(value: object): value is CreatePa
     if (!('currency' in value) || value['currency'] === undefined) return false;
     if (!('buyerData' in value) || value['buyerData'] === undefined) return false;
     if (!('order' in value) || value['order'] === undefined) return false;
-    if (!('shippingAddress' in value) || value['shippingAddress'] === undefined) return false;
     return true;
 }
 
@@ -128,7 +127,7 @@ export function CreatePaymentRequestFromJSONTyped(json: any, ignoreDiscriminator
         'buyerData': CreatePaymentRequestBuyerDataFromJSON(json['buyer_data']),
         'order': CreatePaymentRequestOrderFromJSON(json['order']),
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
-        'shippingAddress': CreatePaymentRequestShippingAddressFromJSON(json['shipping_address']),
+        'shippingAddress': json['shipping_address'] == null ? undefined : CreatePaymentRequestShippingAddressFromJSON(json['shipping_address']),
     };
 }
 

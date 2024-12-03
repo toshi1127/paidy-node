@@ -15,3 +15,6 @@ export * from './CreatePaymentRequestBuyerData';
 export * from './CreatePaymentRequestOrder';
 export * from './CreatePaymentRequestOrderItemsInner';
 export * from './CreatePaymentRequestShippingAddress';
+export * from './Payments';
+export * from './RefundPaymentRequest';
+export * from './UpdatePaymentRequest';

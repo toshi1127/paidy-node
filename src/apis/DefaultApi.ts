@@ -19,6 +19,9 @@ import type {
   CapturePaymentRequest,
   CreatePayment201Response,
   CreatePaymentRequest,
+  Payments,
+  RefundPaymentRequest,
+  UpdatePaymentRequest,
 } from '../models/index';
 import {
     CapturePayment201ResponseFromJSON,
@@ -29,6 +32,12 @@ import {
     CreatePayment201ResponseToJSON,
     CreatePaymentRequestFromJSON,
     CreatePaymentRequestToJSON,
+    PaymentsFromJSON,
+    PaymentsToJSON,
+    RefundPaymentRequestFromJSON,
+    RefundPaymentRequestToJSON,
+    UpdatePaymentRequestFromJSON,
+    UpdatePaymentRequestToJSON,
 } from '../models/index';
 
 export interface CapturePaymentOperationRequest {
@@ -38,6 +47,20 @@ export interface CapturePaymentOperationRequest {
 
 export interface CreatePaymentOperationRequest {
     createPaymentRequest: CreatePaymentRequest;
+}
+
+export interface GetPaymentRequest {
+    id: string;
+}
+
+export interface RefundPaymentOperationRequest {
+    id: string;
+    refundPaymentRequest: RefundPaymentRequest;
+}
+
+export interface UpdatePaymentOperationRequest {
+    id: string;
+    updatePaymentRequest: UpdatePaymentRequest;
 }
 
 /**
@@ -121,6 +144,125 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async createPayment(requestParameters: CreatePaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePayment201Response> {
         const response = await this.createPaymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a payment
+     */
+    async getPaymentRaw(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payments>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getPayment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/payments/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaymentsFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a payment
+     */
+    async getPayment(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payments> {
+        const response = await this.getPaymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Refund a payment
+     */
+    async refundPaymentRaw(requestParameters: RefundPaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CapturePayment201Response>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling refundPayment().'
+            );
+        }
+
+        if (requestParameters['refundPaymentRequest'] == null) {
+            throw new runtime.RequiredError(
+                'refundPaymentRequest',
+                'Required parameter "refundPaymentRequest" was null or undefined when calling refundPayment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/payments/{id}/refunds`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RefundPaymentRequestToJSON(requestParameters['refundPaymentRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CapturePayment201ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Refund a payment
+     */
+    async refundPayment(requestParameters: RefundPaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CapturePayment201Response> {
+        const response = await this.refundPaymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a payment
+     */
+    async updatePaymentRaw(requestParameters: UpdatePaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payments>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling updatePayment().'
+            );
+        }
+
+        if (requestParameters['updatePaymentRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updatePaymentRequest',
+                'Required parameter "updatePaymentRequest" was null or undefined when calling updatePayment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/payments/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdatePaymentRequestToJSON(requestParameters['updatePaymentRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaymentsFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a payment
+     */
+    async updatePayment(requestParameters: UpdatePaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payments> {
+        const response = await this.updatePaymentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

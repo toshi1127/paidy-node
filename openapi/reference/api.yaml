@@ -355,3 +355,142 @@ paths:
                         example: "ヤマダ　タロウ"
                 required:
                   - id
+  /payments/{id}/refunds:
+    post:
+      summary: Refund a payment
+      operationId: refundPayment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the payment to refund
+          schema:
+            type: string
+            example: "pay_WD1KIj4AALQAIMtZ"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                capture_id:
+                  type: string
+                  example: "cap_WFIk5yIAACIAC6n3"
+                amount:
+                  type: integer
+                  example: 39800
+                  description: Amount to refund
+                reason:
+                  type: string
+                  example: "Refundを行う理由"
+                  description: Reason for the refund
+                metadata:
+                  type: object
+                  example: {"key1": "value1", "key2": "value2"}
+              required:
+                - capture_id
+      responses:
+        '201':
+          description: Payment refunded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "pay_WD1KIj4AALQAIMtZ"
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2018-06-14T05:27:10.063Z"
+                  expires_at:
+                    type: string
+                    format: date-time
+                    example: "2018-07-14T05:27:10.063Z"
+                  amount:
+                    type: integer
+                    example: 39800
+                  currency:
+                    type: string
+                    example: "JPY"
+                  description:
+                    type: string
+                    example: " "
+                  store_name:
+                    type: string
+                    example: "Paidy sample store"
+                  test:
+                    type: boolean
+                    example: true
+                  status:
+                    type: string
+                    example: "closed"
+                  tier:
+                    type: string
+                    example: "classic"
+                  buyer:
+                    type: object
+                    properties:
+                      name1:
+                        type: string
+                        example: "山田　太郎"
+                      name2:
+                        type: string
+                        example: "ヤマダ　タロウ"
+                required:
+                  - id
+  /payments/{id}:
+    get:
+      summary: Get a payment
+      operationId: getPayment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the payment to get
+          schema:
+            type: string
+            example: "pay_WD1KIj4AALQAIMtZ"
+      responses:
+        '200':
+          description: Payment retrieved successfully
+          content:
+            application/json:
+              schema:
+                  $ref: ./models/payments.yaml
+    put:
+      summary: Update a payment
+      operationId: updatePayment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the payment to update
+          schema:
+            type: string
+            example: "pay_WD1KIj4AALQAIMtZ"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_ref:
+                  type: string
+                  example: "your_order_ref"
+                description:
+                  type: string
+                  example: " "
+                metadata:
+                  type: object
+                  example: {"key1": "value1", "key2": "value2"}
+      responses:
+        '200':
+          description: Payment updated successfully
+          content:
+            application/json:
+              schema:
+                  $ref: ./models/payments.yaml

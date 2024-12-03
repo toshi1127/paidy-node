@@ -1,0 +1,157 @@
+title: payments
+type: object
+description: 決済データ
+properties:
+  id:
+    type: string
+    example: "pay_WD1KIj4AALQAIMtZ"
+  created_at:
+    type: string
+    format: date-time
+    example: "2018-06-14T05:27:10.063Z"
+  expires_at:
+    type: string
+    format: date-time
+    example: "2018-07-14T05:27:10.063Z"
+  amount:
+    type: integer
+    example: 12500
+  currency:
+    type: string
+    example: "JPY"
+  description:
+    type: string
+    example: " "
+  store_name:
+    type: string
+    example: "Paidy sample store"
+  test:
+    type: boolean
+    example: true
+  status:
+    type: string
+    example: "closed"
+  tier:
+    type: string
+    example: "classic"
+  buyer:
+    type: object
+    properties:
+      name1:
+        type: string
+        example: "山田　太郎"
+      name2:
+        type: string
+        example: "ヤマダ　タロウ"
+      email:
+        type: string
+        example: "yamada@paidy.com"
+      phone:
+        type: string
+        example: "818000000001"
+  order:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "PDI001"
+            title:
+              type: string
+              example: "Paidyスニーカー"
+            description:
+              type: string
+              example: "Paidyスニーカー"
+            unit_price:
+              type: integer
+              example: 12000
+            quantity:
+              type: integer
+              example: 1
+      tax:
+        type: integer
+        example: 300
+      shipping:
+        type: integer
+        example: 200
+      order_ref:
+        type: string
+        example: "your_order_ref"
+      updated_at:
+        type: string
+        nullable: true
+        example: null
+  shipping_address:
+    type: object
+    properties:
+      line1:
+        type: string
+        example: "AXISビル10F"
+      line2:
+        type: string
+        example: "六本木4-22-1"
+      city:
+        type: string
+        example: "港区"
+      state:
+        type: string
+        example: "東京都"
+      zip:
+        type: string
+        example: "106-2004"
+  captures:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "cap_WFIk5yIAACIAC6n3"
+        created_at:
+          type: string
+          format: date-time
+          example: "2018-06-15T05:06:47.189Z"
+        amount:
+          type: integer
+          example: 39800
+        tax:
+          type: integer
+          example: 300
+        shipping:
+          type: integer
+          example: 500
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "PDI001"
+              title:
+                type: string
+                example: "Paidyスニーカー"
+              description:
+                type: string
+                example: " "
+              unit_price:
+                type: integer
+                example: 10000
+              quantity:
+                type: integer
+                example: 1
+        metadata:
+          type: object
+          example: {"key1": "value1", "key2": "value2"}
+  refunds:
+    type: array
+    items:
+      type: object
+  metadata:
+    type: object
+required:
+  - id

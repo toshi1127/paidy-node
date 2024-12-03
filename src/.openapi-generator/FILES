@@ -16,5 +16,8 @@ models/CreatePaymentRequestBuyerData.ts
 models/CreatePaymentRequestOrder.ts
 models/CreatePaymentRequestOrderItemsInner.ts
 models/CreatePaymentRequestShippingAddress.ts
+models/Payments.ts
+models/RefundPaymentRequest.ts
+models/UpdatePaymentRequest.ts
 models/index.ts
 runtime.ts

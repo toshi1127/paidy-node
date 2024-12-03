@@ -1,7 +1,8 @@
 {
   "name": "paidy-node",
   "version": "1.5.0",
-  "description": "",
+  "license": "MIT",
+  "description": "Paidy Node is the simple and thin Paidy API wrapper library for Node.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

@@ -26,6 +26,12 @@ export interface CreatePaymentRequestBuyerData {
      */
     userId: string;
     /**
+     * コンシューマーがアカウントを登録した日付。フィールドの書式はYYYY-MM-DDです。
+     * @type {Date}
+     * @memberof CreatePaymentRequestBuyerData
+     */
+    accountRegistrationDate?: Date;
+    /**
      * 
      * @type {number}
      * @memberof CreatePaymentRequestBuyerData
@@ -76,6 +82,7 @@ export function CreatePaymentRequestBuyerDataFromJSONTyped(json: any, ignoreDisc
     return {
         
         'userId': json['user_id'],
+        'accountRegistrationDate': json['account_registration_date'] == null ? undefined : (new Date(json['account_registration_date'])),
         'age': json['age'] == null ? undefined : json['age'],
         'orderCount': json['order_count'] == null ? undefined : json['order_count'],
         'ltv': json['ltv'] == null ? undefined : json['ltv'],
@@ -96,6 +103,7 @@ export function CreatePaymentRequestBuyerDataFromJSONTyped(json: any, ignoreDisc
     return {
         
         'user_id': value['userId'],
+        'account_registration_date': value['accountRegistrationDate'] == null ? undefined : ((value['accountRegistrationDate']).toISOString().substring(0,10)),
         'age': value['age'],
         'order_count': value['orderCount'],
         'ltv': value['ltv'],

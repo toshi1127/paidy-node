@@ -39,6 +39,11 @@ paths:
                     user_id:
                       type: string
                       example: "user_123"
+                    account_registration_date:
+                      type: string
+                      description: コンシューマーがアカウントを登録した日付。フィールドの書式はYYYY-MM-DDです。
+                      format: date
+                      example: "2018-06-14"
                     age:
                       type: integer
                       example: 29

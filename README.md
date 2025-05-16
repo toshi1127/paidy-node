@@ -6,7 +6,7 @@
 
 # Paidy Node
 
-Paidy Node is the simple and thin Paidy API wrapper library for Node.js that supports following features.
+Paidy Node is Paidy API SDK for Node.js that supports following features.
 
 - [Payments API](https://paidy.com/docs/en/payments.html#paidyapi_pay)
 - [Tokens API](https://paidy.com/docs/en/tokens.html#paidyapi_tok)
